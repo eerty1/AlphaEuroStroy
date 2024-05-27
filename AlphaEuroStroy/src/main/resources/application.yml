@@ -1,0 +1,49 @@
+quarkus:
+  http:
+    root-path: /api
+    cors:
+      ~: true
+      origins: ${CORS_ORIGINS}
+      headers: accept, authorization, content-type, x-requested-with
+      methods: GET, POST, PUT, DELETE, OPTIONS
+  swagger-ui:
+    always-include: true
+
+  mongodb:
+    connection-string: ${DB_URL}
+    database: ${DB_NAME}
+  native:
+    resources:
+      includes: publicKey.pem
+  mailer:
+    host: ${MAIL_PROVIDER}
+    port: 465
+    from: ${MAIL_FROM}
+    username: ${MAIL_USER}
+    password: ${MAIL_PASS}
+    start-tls: REQUIRED
+    ssl: true
+    mock: false
+  rest-client:
+    tg-bot-service:
+      url: ${TG_BOT_URL}
+
+mail:
+  receiver: ${MAIL_RECEIVER}
+
+telegram:
+  chat-id: ${TG_CHAT_ID}
+
+mp:
+  jwt:
+    verify:
+      publickey:
+        location: ${PUBLIC_K_LOCATION}
+
+smallrye:
+  jwt:
+    sign:
+      key:
+        location: ${PRIVATE_K_LOCATION}
+
+bot-token: ${BOT_TOKEN}
