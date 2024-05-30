@@ -1,0 +1,24 @@
+version: "3.8"
+
+services:
+  alpha-euro-stroy:
+    image: alpha-euro-stroy:latest
+    pull_policy: never
+    build:
+      context: .
+      dockerfile: /src/main/docker/Dockerfile.jvm
+    container_name: "alpha-euro-stroy"
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image : mongo:latest
+    container_name: "mongodb"
+    volumes:
+      - /alpha-euro-stroy:/data/db
+    ports:
+      - "27017:27017"
+volumes:
+  alpha-euro-stroy:

@@ -36,6 +36,20 @@ Build and run application:
 
 * mvn clean install
 
-* Run **java –jar target/quarkus-app/quarkus-run.jar**
+* Run **java –jar target/quarkus-app/quarkus-run.jar** from root directory
 
-* Open **http://localhost:8080/api/q/swagger-ui/** to see all the available endpoints and entities
+Alternatively you can run the application from Dockerfile or from docker compose (in case you have no MongoDB installed)
+
+1) Dockerfile 
+From the root directory run the following commands:
+
+* docker build -f src/main/docker/Dockerfile.jvm -t desired_name:desired_tag .
+
+* docker run -i -p 8080:8080 desired_name:desired_tag
+
+2) docker compose
+From the root directory run the following command:
+
+* docker compose up
+
+Open **http://localhost:8080/api/q/swagger-ui/** to see all the available endpoints and entities
